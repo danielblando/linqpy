@@ -17,7 +17,7 @@ setup(
     description='Simple implementation of .NET Linq in python list.',
     author=u'Daniel Blando',
     author_email='daniel@blando.com.br',
-    long_description=read('README.md'),
+    long_description=read('README'),
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
