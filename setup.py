@@ -28,6 +28,7 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Internet",
     ],
+    keywords='linq c# .net list',
     packages=find_packages('src'),
     package_dir={'': 'src'},
     install_requires=[
