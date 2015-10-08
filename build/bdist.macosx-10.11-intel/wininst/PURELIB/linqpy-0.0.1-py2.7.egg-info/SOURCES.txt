@@ -1,0 +1,7 @@
+README
+setup.py
+src/linqpy.egg-info/PKG-INFO
+src/linqpy.egg-info/SOURCES.txt
+src/linqpy.egg-info/dependency_links.txt
+src/linqpy.egg-info/pbr.json
+src/linqpy.egg-info/top_level.txt

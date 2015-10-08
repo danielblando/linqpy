@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: linqpy
-Version: 0.0.2
+Version: 0.0.1
 Summary: Simple implementation of .NET Linq in python list.
 Home-page: https://github.com/danielblando/linqpy
 Author: Daniel Blando
