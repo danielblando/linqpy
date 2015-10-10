@@ -11,13 +11,13 @@ def read(fname):
 
 setup(
     name='linqpy',
-    version='0.0.2',
+    version='0.0.3',
     url='https://github.com/danielblando/linqpy',
     license='MIT',
     description='Simple implementation of .NET Linq in python list.',
     author=u'Daniel Blando',
     author_email='daniel@blando.com.br',
-    long_description=read('README'),
+    long_description=read('README.md'),
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
