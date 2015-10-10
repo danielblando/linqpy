@@ -29,3 +29,7 @@ class List(list):
         if not func:
             return self.element_at_or_default(0)
         return next((x for x in self if func(x)), None)
+
+    def new_list(self):
+        return List(self)
+
