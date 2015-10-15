@@ -98,7 +98,7 @@ dist/
 linqpy.egg-info
 
 ## Directory-based project format:
-.idea/*
+.idea/
 .env
 
 ## File-based project format:
