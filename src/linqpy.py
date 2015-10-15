@@ -16,7 +16,7 @@ class List(list):
         return self[index]
 
     def element_at_or_default(self, index):
-        if len(self) > index:
+        if len(self) < index:
             return None
         return self.element_at(index)
 
