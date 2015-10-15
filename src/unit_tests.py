@@ -8,6 +8,11 @@ from linqpy import List
 
 
 class Tests(TestCase):
+    def test_all(self):
+        a = List([1, 2, 3])
+        self.assertTrue(a.all(lambda x: x < 5))
+        
+
     def test_new_list(self):
         a = List([1, 2, 3])
         b = a.new_list()
