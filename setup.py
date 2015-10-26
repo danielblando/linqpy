@@ -11,7 +11,7 @@ def read(fname):
 
 setup(
     name='linqpy',
-    version='0.0.6',
+    version='0.0.7',
     url='https://github.com/danielblando/linqpy',
     license='MIT',
     description='Simple implementation of .NET Linq in python list.',

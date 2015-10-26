@@ -4,7 +4,7 @@ __author__ = 'Daniel'
 
 from unittest import TestCase, main
 
-from linqpy import List
+from linqpy.linqpy import List
 
 a = List([1, 2, 3])
 
