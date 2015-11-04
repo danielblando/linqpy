@@ -45,6 +45,19 @@ class List(list):
     def new_list(self):
         return List(self)
 
+    def max(self, func=None):
+        if not func:
+            return max(self)
+        return max(self.select(func))
+
+    def min(self, func=None):
+        if not func:
+            return min(self)
+        return min(self.select(func))
+
+    def select(self, func):
+        return List([func(x) for x in self])
+
     def single(self, func=None):
         l = self.where(func) if func else self
         if len(l) != 1:
@@ -56,6 +69,11 @@ class List(list):
         if len(l) != 1:
              return None
         return l.element_at(0)
+
+    def sum(self, func=None):
+        if not func:
+            return sum(self)
+        return sum(self.select(func))
 
     def where(self, func):
         return List([x for x in self if func(x)])
