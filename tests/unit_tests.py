@@ -11,7 +11,7 @@ from linqpy.list import List
 a = List([1, 2, 3])
 b = List()
 c = List([1])
-d = List([{"id": 1, "name": "bla"}, {"id": 1, "name": "ble"}])
+d = List([{"id": 1, "name": "bla"}, {"id": 1, "name": "ble"}, {"id": 2, "name": "ble"}])
 
 
 class Tests(TestCase):
@@ -59,6 +59,18 @@ class Tests(TestCase):
         __new_list = a.new_list()
         self.assertNotEqual(id(a), id(__new_list), "New list not returning different obj")
 
+    def test_max(self):
+        self.assertEqual(a.max(), 3)
+        self.assertEqual(d.max(lambda x: x["id"]), 2)
+
+    def test_min(self):
+        self.assertEqual(a.min(), 1)
+        self.assertEqual(d.min(lambda x: x["id"]), 1)
+
+    def test_select(self):
+        self.assertEqual(a.select(lambda x: x), [1,2,3])
+        self.assertEqual(d.select(lambda x: x["id"]), [1,1,2])
+
     def test_single(self):
         self.assertRaises(Exception, a.single)
         self.assertRaises(Exception, b.single)
@@ -73,11 +85,15 @@ class Tests(TestCase):
         self.assertEqual(a.single_or_default(lambda x: x == 3), 3)
         self.assertEqual(d.single_or_default(lambda x: x["id"] == 1), None)
 
+    def test_sum(self):
+        self.assertEqual(a.sum(), 6)
+        self.assertEqual(d.sum(lambda x: x["id"]), 4)
+
     def test_where(self):
         self.assertEqual(a.where(lambda x: x == 3), List([3]))
         self.assertEqual(a.where(lambda x: False), List())
         self.assertEqual(b.where(lambda x: True), List())
-        self.assertEqual(d.where(lambda x: x["id"] == 1), d)
+        self.assertEqual(d.where(lambda x: x["id"] == 1), [{"id": 1, "name": "bla"}, {"id": 1, "name": "ble"}])
 
 if __name__ == '__main__':
     main()
