@@ -12,6 +12,12 @@ class List(list):
             return len(self) > 0
         return self.first_or_default(func) is not None
 
+    def avarage(self, func=None):
+        if not func:
+            return round(sum(self) / float(len(self)), 2)
+        l = self.select(func)
+        return round(sum(l) / float(len(l)), 2)
+
     def element_at(self, index):
         return self[index]
 
@@ -54,6 +60,16 @@ class List(list):
         if not func:
             return min(self)
         return min(self.select(func))
+
+    def order_by(self, func=None):
+        if not func:
+            return sorted(self)
+        return sorted(self, key=func)
+
+    def order_by_descending(self, func=None):
+        if not func:
+            return sorted(self, reverse=True)
+        return sorted(self, key=func, reverse=True)
 
     def select(self, func):
         return List([func(x) for x in self])
