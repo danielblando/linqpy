@@ -8,10 +8,11 @@ sys.path.insert(0, os.path.abspath(__file__+"/../../src"))
 from unittest import TestCase, main
 from linqpy.list import List
 
-a = List([1, 2, 3])
+a = List([2, 1, 3])
 b = List()
 c = List([1])
 d = List([{"id": 1, "name": "bla"}, {"id": 1, "name": "ble"}, {"id": 2, "name": "ble"}])
+e = List([{"age": 12}, {"age": 10}, {"age": 15}])
 
 
 class Tests(TestCase):
@@ -25,19 +26,23 @@ class Tests(TestCase):
         self.assertTrue(a.any(lambda x: x > 2))
         self.assertFalse(a.any(lambda x: x > 4))
 
+    def test_avarage(self):
+        self.assertEqual(a.avarage(), 2)
+        self.assertEqual(d.avarage(lambda x: x["id"]), 1.33)
+
     def test_element_at(self):
-        self.assertEqual(a.element_at(0), 1)
+        self.assertEqual(a.element_at(0), 2)
 
     def test_element_at_or_default(self):
-        self.assertEqual(a.element_at_or_default(0), 1)
+        self.assertEqual(a.element_at_or_default(0), 2)
         self.assertEqual(a.element_at_or_default(4), None)
 
     def test_first(self):
-        self.assertEqual(a.first(), 1)
+        self.assertEqual(a.first(), 2)
         self.assertEqual(a.first(lambda x: x == 2), 2)
 
     def test_first_or_default(self):
-        self.assertEqual(a.first_or_default(), 1)
+        self.assertEqual(a.first_or_default(), 2)
         self.assertEqual(a.first_or_default(lambda x: x == 2), 2)
         self.assertEqual(a.first_or_default(lambda x: x == 5), None)
 
@@ -67,9 +72,17 @@ class Tests(TestCase):
         self.assertEqual(a.min(), 1)
         self.assertEqual(d.min(lambda x: x["id"]), 1)
 
+    def test_order_by(self):
+        self.assertEqual(a.order_by(), [1, 2, 3])
+        self.assertEqual(e.order_by(lambda x: x["age"]), [{"age": 10}, {"age": 12}, {"age": 15}])
+
+    def test_order_by_descending(self):
+        self.assertEqual(a.order_by_descending(), [3, 2, 1])
+        self.assertEqual(e.order_by_descending(lambda x: x["age"]), [{"age": 15}, {"age": 12}, {"age": 10}])
+
     def test_select(self):
-        self.assertEqual(a.select(lambda x: x), [1,2,3])
-        self.assertEqual(d.select(lambda x: x["id"]), [1,1,2])
+        self.assertEqual(a.select(lambda x: x), [2, 1, 3])
+        self.assertEqual(d.select(lambda x: x["id"]), [1, 1, 2])
 
     def test_single(self):
         self.assertRaises(Exception, a.single)
