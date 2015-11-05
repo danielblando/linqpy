@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'Daniel'
 
+from copy import deepcopy
 
 class List(list):
 
@@ -49,7 +50,7 @@ class List(list):
         return l.element_at_or_default(len(l)-1)
 
     def new_list(self):
-        return List(self)
+        return List(deepcopy(self))
 
     def max(self, func=None):
         if not func:

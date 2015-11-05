@@ -64,6 +64,19 @@ class Tests(TestCase):
         __new_list = a.new_list()
         self.assertNotEqual(id(a), id(__new_list), "New list not returning different obj")
 
+        __n1 = List([1, 2, 3])
+        __n2 = __n1.new_list()
+        __n2.append(4)
+        self.assertEqual(__n1, [1, 2, 3])
+        self.assertEqual(__n2, [1, 2, 3, 4])
+
+        __n3 = List([{"id": 1, "name": "bla"}, {"id": 2, "name": "ble"}])
+        __n4 = __n3.new_list()
+        __n4[0]["name"] = "bli"
+        self.assertEqual(__n3[0]["name"], "bla")
+        self.assertEqual(__n4[0]["name"], "bli")
+
+
     def test_max(self):
         self.assertEqual(a.max(), 3)
         self.assertEqual(d.max(lambda x: x["id"]), 2)
