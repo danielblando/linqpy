@@ -64,18 +64,17 @@ class Tests(TestCase):
         __new_list = a.new_list()
         self.assertNotEqual(id(a), id(__new_list), "New list not returning different obj")
 
-        __n1 = List([1, 2, 3])
-        __n2 = __n1.new_list()
-        __n2.append(4)
-        self.assertEqual(__n1, [1, 2, 3])
-        self.assertEqual(__n2, [1, 2, 3, 4])
+        __l1 = List([1, 2, 3])
+        __l2 = __l1.new_list()
+        __l2.append(4)
+        self.assertEqual(__l1, [1, 2, 3])
+        self.assertEqual(__l2, [1, 2, 3, 4])
 
-        __n3 = List([{"id": 1, "name": "bla"}, {"id": 2, "name": "ble"}])
-        __n4 = __n3.new_list()
-        __n4[0]["name"] = "bli"
-        self.assertEqual(__n3[0]["name"], "bla")
-        self.assertEqual(__n4[0]["name"], "bli")
-
+        __l3 = List([{"id": 1, "name": "bla"}, {"id": 2, "name": "ble"}])
+        __l4 = __l3.new_list()
+        __l4[0]["name"] = "bli"
+        self.assertEqual(__l3[0]["name"], "bla")
+        self.assertEqual(__l4[0]["name"], "bli")
 
     def test_max(self):
         self.assertEqual(a.max(), 3)
@@ -92,6 +91,13 @@ class Tests(TestCase):
     def test_order_by_descending(self):
         self.assertEqual(a.order_by_descending(), [3, 2, 1])
         self.assertEqual(e.order_by_descending(lambda x: x["age"]), [{"age": 15}, {"age": 12}, {"age": 10}])
+
+    def test_remove_where(self):
+        __l1 = List([1, 2, 3, 4, 3])
+        __l1.remove_where(lambda x: x == 3)
+        self.assertEqual(__l1, [1, 2, 4])
+        __l1.remove_where(lambda x: x == 5)
+        self.assertEqual(__l1, [1, 2, 4])
 
     def test_select(self):
         self.assertEqual(a.select(lambda x: x), [2, 1, 3])

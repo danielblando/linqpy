@@ -3,6 +3,7 @@ __author__ = 'Daniel'
 
 from copy import deepcopy
 
+
 class List(list):
 
     def all(self, func):
@@ -72,6 +73,9 @@ class List(list):
             return sorted(self, reverse=True)
         return sorted(self, key=func, reverse=True)
 
+    def remove_where(self, func):
+        map(self.remove, self.where(func))
+
     def select(self, func):
         return List([func(x) for x in self])
 
@@ -93,5 +97,5 @@ class List(list):
         return sum(self.select(func))
 
     def where(self, func):
-        return List([x for x in self if func(x)])
+        return List(filter(func, self))
 
